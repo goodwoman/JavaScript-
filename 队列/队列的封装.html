@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Queue() {
+            this.item = [];
+            this.len = 0;
+            //入队列操作
+            Queue.prototype.enqueue = function(element) {
+                this.item.push(element);
+                this.len += 1;
+            }
+            //出队列操作
+            Queue.prototype.dequeue = function() {
+                this.len -= 1;
+                return this.item.shift();
+            }
+            //查看前端的元素
+            Queue.prototype.front = function() {
+                return this.item[0];
+            }
+            // 查看队列是否为空
+            Queue.prototype.isEmpty = function () {
+                return this.len === 0;
+            }
+            // 查看队列中元素的个数
+            Queue.prototype.size = function() {
+                return this.len;
+            }
+             
+        }
+        // 创建队列对象
+    var queue = new Queue()
+
+// 在队列中添加元素
+queue.enqueue("abc")
+queue.enqueue("cba")
+queue.enqueue("nba")
+
+// 查看一下队列前端元素
+alert(queue.front())
+
+// 查看队列是否为空和元素个数
+alert(queue.isEmpty())
+alert(queue.size())
+
+// 从队列中删除元素
+alert(queue.dequeue())
+alert(queue.dequeue())
+alert(queue.dequeue())
+    </script>
+</body>
+</html>

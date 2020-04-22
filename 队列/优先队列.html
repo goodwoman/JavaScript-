@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function PriorityQueue() {
+             this.item = [];
+            function QueueElement(element,priority) {
+                this.element = element;
+                this.priority = priority;
+            }
+            PriorityQueue.prototype.enqueue = function (element,priority) {
+                let queueElement = new QueueElement(element,priority);
+                let index = this.item.length - 1;
+                if(this.isEmpty()){
+                    this.item.push(queueElement);
+                }
+                else{
+                     // 注意: 我们这里是数字越小, 优先级越高
+                    for(var k = this.item.length - 1;k >= 0;k--){
+                        if(this.item[k].priority < queueElement.priority)
+                            break;
+                        
+                    }
+                    
+                    // while(this.item[index].priority > queueElement.priority) index -= 1;
+                    this.item.splice(k + 1,0,queueElement);
+                    
+                    
+                }
+            }
+            
+            PriorityQueue.prototype.isEmpty = function(){
+                return this.item.length === 0;
+            }
+            PriorityQueue.prototype.dequeue = function() {
+                return this.item.shift();
+            }
+            PriorityQueue.prototype.size = function (){
+                return this.item.length;
+            }
+            PriorityQueue.prototype.front = function() {
+                return this.item[0];
+            }
+        
+        }
+    var pQueue = new PriorityQueue()
+    // 添加元素
+    pQueue.enqueue("abc", 10)
+    pQueue.enqueue("cba", 5)
+    pQueue.enqueue("nba", 12)
+    pQueue.enqueue("mba", 3)
+
+    // 遍历所有的元素
+    var size = pQueue.size()
+    for (var i = 0; i < size; i++) {
+        var value = pQueue.dequeue()
+        console.log(value.element + "-" + value.priority)
+    }
+</script>
+</body>
+</html>

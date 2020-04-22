@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Stack() {
+            this.item = []
+            this.count = 0;
+            //入栈操作
+            Stack.prototype.push = function (value) {
+                this.this.item.push(value);
+                this.count += 1;
+            }
+            //出栈操作
+            Stack.prototype.pop = function() {
+                this.count -= 1;
+                return this.this.item.pop();
+
+            }
+            //获取栈顶元素
+            Stack.prototype.top = function () {
+                return this.item[this.count - 1];
+            }
+            //获得栈的长度
+            Stack.prototype.size = function() {
+                return this.count;
+            }
+            //判断是否是空栈
+            Stack.prototype.isEmpty = function() {
+                return this.count === 0;
+            }
+        }
+        //应用场景
+        //将十进制数转成其他进制数
+        function decNumber(number,dec) {
+            var stack = new Stack();
+            let result = "";
+            while(number > 0) {
+                stack.push(number % dec);
+                number = Math.floor(number / dec);
+            }
+            while(!stack.isEmpty()) {
+                result += stack.pop();
+            }
+            return result;
+        }
+        console.log(decNumber(3,2))
+        function dec2bin(decNumer) {
+        // 定义变量
+        var stack = new Stack()
+        var remainder;
+
+        // 循环除法
+        while (decNumer > 0) {
+            remainder = decNumer % 2
+            decNumer = Math.floor(decNumer / 2)
+            stack.push(remainder)
+        }
+
+        // 将数据取出
+        var binayriStrng = ""
+        while (!stack.isEmpty()) {
+            binayriStrng += stack.pop()
+        }
+        return binayriStrng
+    }
+
+    // 测试函数
+    alert(dec2bin(10))
+    alert(dec2bin(233))
+    alert(dec2bin(1000))
+        
+
+    </script>
+    
+</body>
+</html>

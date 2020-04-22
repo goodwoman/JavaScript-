@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>集合</title>
+</head>
+<body>
+    <script>
+        function Set() {
+            this.item = {};
+            // 集合的操作方法
+            // 判断集合中是否有某个元素
+            Set.prototype.has = function (value) {
+                return this.item.hasOwnProperty(value);
+            }
+            // 向集合中添加元素
+            Set.prototype.add = function(value) {
+                if(this.has(value)) return false;
+                this.item[value] = value;
+                return true;
+            }
+            // 从集合中删除某个元素
+            Set.prototype.remove = function (value) {
+                if(!this.has(value)) return false;
+                delete this.item[value];
+            }
+            // 清空集合中所有的元素
+            Set.prototype.clear = function() {
+                this.item = {};
+            }
+            // 获取集合的大小
+            Set.prototype.size = function() {
+                return Object.keys(this.item).length;
+                /*
+                考虑兼容性问题, 使用下面的代码
+                var count = 0
+                for (var value in this.item) {
+                    if (this.this.items.hasOwnProperty(value)) {
+                        count++
+                    }
+                }
+                return count
+                */
+            }
+            // 获取集合中所有的值
+            Set.prototype.values = function() {
+                return Object.keys(this.item);
+                 /*
+                考虑兼容性问题, 使用下面的代码
+                var keys = []
+                for (var value in this.item) {
+                    keys.push(value)
+                }
+                return keys
+                */
+            }
+        }
+        // 测试和使用集合类
+        var set = new Set()
+        console.log(set);
+
+        //添加元素
+        set.add(1)
+        alert(set.values()) // 1
+        set.add(1)
+        alert(set.values()) // 1
+
+        set.add(100)
+        set.add(200)
+        alert(set.values()) // 1,100,200
+
+        // 判断是否包含元素
+        alert(set.has(100)) // true
+
+        // 删除元素
+        set.remove(100)
+        alert(set.values()) // 1, 200
+
+        // 获取集合的大小
+        alert(set.size()) // 2
+        set.clear()
+        alert(set.size()) // 0
+    </script>
+</body>
+</html>

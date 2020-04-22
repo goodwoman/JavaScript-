@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function bubleSort(arr){
+            if(!Array.isArray(arr)||arr.length <= 0) return;
+                for(let i = 0;i < arr.length; i++) {
+                    for(let j = 0 ;j < arr.length-i;j++){
+                        if(arr[j] > arr[j + 1]){
+                            let temp = arr[j];
+                            arr[j] = arr[j + 1];
+                            arr[j + 1] = temp;
+                        }
+                    }
+                }
+            return arr;
+        }
+        function insertSort(arr){
+            if(!Array.isArray(arr)||arr.length <= 0) return;
+            for(let i = 1;i < arr.length;i++){//[3,8,23,1,9,6]
+                let data = arr[i];
+                for(var j = i-1;j>=0;j--){
+                    if(arr[j] > data)
+                        arr[j] = arr[j+1]
+                    else
+                        break;
+                }
+                arr[j+1] = data;
+            }
+            return arr;
+        }
+        function selectSort(arr) {
+            if(!Array.isArray(arr)||arr.length <= 0) return;
+            for(let i = 0;i < arr.length;i++){
+                let min = i;
+                for(let j = i;j < arr.length;j++ ){
+                    if(arr[i] > arr[j])
+                        min = j;
+                }
+                let temp = arr[i];
+                arr[i] = arr[min];
+                arr[min] = temp;
+            }
+            return arr;
+        }
+        function shellSort (arr) {
+            if(!Array.isArray(arr)|| arr.length < 1) return;
+            let len = Math.floor(arr.len /2);
+            while(len > 1){
+                //for()
+            }
+        }
+        var array = [3,8,23,1,9,6];
+        console.log("bubbleSort: "+ bubleSort(array));
+        console.log("selectSort: "+ selectSort(array));
+        console.log("insertSort: "+ insertSort(array));
+
+    </script>
+</body>
+</html>
